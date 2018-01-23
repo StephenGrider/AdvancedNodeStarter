@@ -14,7 +14,6 @@ afterEach(async () => {
 test('Loads the homepage', async () => {
   const h1 = await page
     .goto('http://localhost:3000')
-    .html()
     .evaluate(() => document.querySelector('h1').innerHTML);
 
   expect(h1).toEqual('Emaily!');

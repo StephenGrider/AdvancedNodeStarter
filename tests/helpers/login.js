@@ -9,7 +9,8 @@ module.exports = async page => {
     .click('.rc-button-submit')
     .wait(1000)
     .type(GOOGLE_PASSWORD, '#Passwd')
-    .click('#signIn');
+    .click('#signIn')
+    .html();
   console.log(html);
   await page.wait('#submit_approve_access').evaluate(() => {
     return new Promise((resolve, reject) => {

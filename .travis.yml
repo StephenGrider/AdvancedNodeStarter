@@ -21,5 +21,4 @@ script:
   - nohup google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - nohup npm run start &
   - sleep 5
-  - curl localhost:3000
   - npm run test
