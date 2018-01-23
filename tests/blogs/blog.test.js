@@ -6,7 +6,7 @@ let page;
 
 beforeEach(() => {
   page = new Chromeless({
-    cdp: { port: 1236 },
+    // cdp: { port: 1236 },
     implicitWait: true
   });
 });

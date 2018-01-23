@@ -1,11 +1,14 @@
+jest.setTimeout(25000);
 const { Chromeless } = require('chromeless');
 
 let page;
 
 beforeEach(() => {
-  page = new Chromeless({
-    cdp: { port: 1235 }
-  });
+  page = new Chromeless(
+    {
+      // cdp: { port: 1235 }
+    }
+  );
 });
 
 afterEach(async () => {
