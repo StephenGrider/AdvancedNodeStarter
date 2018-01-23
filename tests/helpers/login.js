@@ -9,19 +9,19 @@ module.exports = async page => {
     .click('.rc-button-submit')
     .wait(1000)
     .type(GOOGLE_PASSWORD, '#Passwd')
-    .click('#signIn')
-    .wait('#submit_approve_access')
-    .evaluate(() => {
-      return new Promise((resolve, reject) => {
-        setInterval(() => {
-          const { disabled } = document.querySelector('#submit_approve_access');
+    .click('#signIn');
+  console.log(html);
+  await page.wait('#submit_approve_access').evaluate(() => {
+    return new Promise((resolve, reject) => {
+      setInterval(() => {
+        const { disabled } = document.querySelector('#submit_approve_access');
 
-          if (!disabled) {
-            resolve();
-          }
-        }, 100);
-      });
+        if (!disabled) {
+          resolve();
+        }
+      }, 100);
     });
+  });
 
   await page.click('#submit_approve_access');
 
