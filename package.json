@@ -8,8 +8,7 @@
     "server": "nodemon index.js --ignore tests",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":
-      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
@@ -21,6 +20,7 @@
     "concurrently": "^3.5.0",
     "cookie-session": "^2.0.0-beta.2",
     "express": "^4.15.3",
+    "jest": "^22.1.4",
     "localtunnel": "^1.8.3",
     "lodash": "^4.17.4",
     "mongoose": "^4.11.1",
