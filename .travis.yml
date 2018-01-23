@@ -11,6 +11,7 @@ cache:
     - node_modules
 install:
   - npm install
+  - npm install --prefix client
 script:
   - npm run dev
   - npm run test
