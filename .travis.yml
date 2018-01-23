@@ -13,7 +13,6 @@ cache:
     - client/node_modules
 install:
   - npm install
-  - npm install --prefix client
   - npm run heroku-postbuild
 before_script:
   - sudo chown root /opt/google/chrome/chrome-sandbox
@@ -21,6 +20,6 @@ before_script:
 script:
   - nohup google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - nohup npm run start &
-  - sleep 10
+  - sleep 5
   - curl localhost:3000
   - npm run test

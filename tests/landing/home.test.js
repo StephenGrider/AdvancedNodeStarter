@@ -1,4 +1,4 @@
-jest.setTimeout(25000);
+jest.setTimeout(15000);
 const { Chromeless } = require('chromeless');
 
 let page;
@@ -12,6 +12,7 @@ afterEach(async () => {
 });
 
 test('Loads the homepage', async () => {
+  console.log('IM HERE!');
   const p = await page.goto('localhost:3000').html();
 
   console.log(p);
