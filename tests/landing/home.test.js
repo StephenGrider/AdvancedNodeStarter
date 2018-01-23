@@ -12,11 +12,10 @@ afterEach(async () => {
 });
 
 test('Loads the homepage', async () => {
-  console.log('IM HERE!');
-  const p = await page.goto('http://localhost:3000').html();
-
-  console.log(p);
-  const h1 = await page.evaluate(() => document.querySelector('h1').innerHTML);
+  const h1 = await page
+    .goto('http://localhost:3000')
+    .html()
+    .evaluate(() => document.querySelector('h1').innerHTML);
 
   expect(h1).toEqual('Emaily!');
 });
