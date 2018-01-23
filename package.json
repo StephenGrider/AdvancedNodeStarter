@@ -21,16 +21,11 @@
     "cookie-session": "^2.0.0-beta.2",
     "express": "^4.15.3",
     "jest": "^22.1.4",
-    "localtunnel": "^1.8.3",
     "lodash": "^4.17.4",
     "mongoose": "^4.11.1",
-    "nightmare": "^2.10.0",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0",
-    "path-parser": "^2.0.2",
-    "puppeteer": "^1.0.0",
-    "sendgrid": "^5.1.2",
-    "stripe": "^4.23.1"
+    "path-parser": "^2.0.2"
   }
 }
