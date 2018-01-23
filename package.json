@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "chromeless": "^1.5.0",
     "concurrently": "^3.5.0",
     "cookie-session": "^2.0.0-beta.2",
     "express": "^4.15.3",

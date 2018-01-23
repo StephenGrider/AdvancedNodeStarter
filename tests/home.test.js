@@ -1,22 +1,21 @@
-const puppeteer = require('puppeteer');
-const Page = require('./helpers/page');
+const { Chromeless } = require('chromeless');
 
-let browser, page;
+let page;
 
-beforeEach(async () => {
-  browser = await puppeteer.launch({ headless: false });
-  page = Page(await browser.newPage());
+beforeEach(() => {
+  page = new Chromeless({
+    cdp: { port: 1235 }
+  });
 });
 
 afterEach(async () => {
-  await browser.close();
+  await page.end();
 });
 
 test('Loads the homepage', async () => {
-  await page.goto('localhost:3000');
-  await page.waitFor('h1');
-
-  const h1 = await page.evaluate(() => document.querySelector('h1').innerHTML);
+  const h1 = await page
+    .goto('localhost:3000')
+    .evaluate(() => document.querySelector('h1').innerHTML);
 
   expect(h1).toEqual('Emaily!');
 });
