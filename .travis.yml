@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "8"
 dist: trusty
-sudo: false
+sudo: required
 addons:
   chrome: stable
 env:
@@ -19,7 +19,7 @@ install:
   - npm run heroku-postbuild
 before_script:
 script:
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - nohup google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - nohup npm run start &
   - sleep 10
   - npm run test
