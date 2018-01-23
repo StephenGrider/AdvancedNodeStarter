@@ -1,17 +1,22 @@
-const Nightmare = require('nightmare');
+const puppeteer = require('puppeteer');
+const Page = require('./helpers/page');
 
-let nightmare;
+let browser, page;
 
-beforeEach(() => {
-  nightmare = Nightmare({ show: true });
+beforeEach(async () => {
+  browser = await puppeteer.launch({ headless: false });
+  page = Page(await browser.newPage());
+});
+
+afterEach(async () => {
+  await browser.close();
 });
 
 test('Loads the homepage', async () => {
-  const val = await nightmare
-    .goto('http://localhost:3000')
-    .wait('h1')
-    .evaluate(() => document.querySelector('h1').innerHTML)
-    .end();
+  await page.goto('localhost:3000');
+  await page.waitFor('h1');
 
-  expect(val).toEqual('Emaily!');
+  const h1 = await page.evaluate(() => document.querySelector('h1').innerHTML);
+
+  expect(h1).toEqual('Emaily!');
 });
