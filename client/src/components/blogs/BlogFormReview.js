@@ -1,4 +1,4 @@
-// SurveyFormReview shows users their form inputs for review
+// BlogFormReview shows users their form inputs for review
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -6,14 +6,12 @@ import formFields from './formFields';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 
-const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
+const BlogFormReview = ({ onCancel, formValues, submitBlog, history }) => {
   const reviewFields = _.map(formFields, ({ name, label }) => {
     return (
       <div key={name}>
         <label>{label}</label>
-        <div>
-          {formValues[name]}
-        </div>
+        <div>{formValues[name]}</div>
       </div>
     );
   });
@@ -29,10 +27,10 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
         Back
       </button>
       <button
-        onClick={() => submitSurvey(formValues, history)}
+        onClick={() => submitBlog(formValues, history)}
         className="green btn-flat right white-text"
       >
-        Send Survey
+        Save Blog
         <i className="material-icons right">email</i>
       </button>
     </div>
@@ -40,7 +38,7 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
 };
 
 function mapStateToProps(state) {
-  return { formValues: state.form.surveyForm.values };
+  return { formValues: state.form.blogForm.values };
 }
 
-export default connect(mapStateToProps, actions)(withRouter(SurveyFormReview));
+export default connect(mapStateToProps, actions)(withRouter(BlogFormReview));

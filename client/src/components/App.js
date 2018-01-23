@@ -6,7 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import SurveyNew from './surveys/SurveyNew';
+import BlogNew from './blogs/BlogNew';
 
 class App extends Component {
   componentDidMount() {
@@ -20,8 +20,8 @@ class App extends Component {
           <div>
             <Header />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/surveys" component={Dashboard} />
-            <Route path="/surveys/new" component={SurveyNew} />
+            <Route exact path="/blogs" component={Dashboard} />
+            <Route path="/blogs/new" component={BlogNew} />
           </div>
         </BrowserRouter>
       </div>

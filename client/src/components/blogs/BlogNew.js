@@ -1,24 +1,24 @@
-// SurveyNew shows SurveyForm and SurveyFormReview
+// BlogNew shows BlogForm and BlogFormReview
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import SurveyForm from './SurveyForm';
-import SurveyFormReview from './SurveyFormReview';
+import BlogForm from './BlogForm';
+import BlogFormReview from './BlogFormReview';
 
-class SurveyNew extends Component {
+class BlogNew extends Component {
   state = { showFormReview: false };
 
   renderContent() {
     if (this.state.showFormReview) {
       return (
-        <SurveyFormReview
+        <BlogFormReview
           onCancel={() => this.setState({ showFormReview: false })}
         />
       );
     }
 
     return (
-      <SurveyForm
-        onSurveySubmit={() => this.setState({ showFormReview: true })}
+      <BlogForm
+        onBlogSubmit={() => this.setState({ showFormReview: true })}
       />
     );
   }
@@ -33,5 +33,5 @@ class SurveyNew extends Component {
 }
 
 export default reduxForm({
-  form: 'surveyForm'
-})(SurveyNew);
+  form: 'blogForm'
+})(BlogNew);

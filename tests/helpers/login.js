@@ -1,14 +1,31 @@
 const GOOGLE_EMAIL = 'devemaily@gmail.com';
 const GOOGLE_PASSWORD = 'mydevaccount';
 
-module.exports = nightmare => {
-  return nightmare
+module.exports = async page => {
+  const html = await page
     .goto('http://localhost:3000/auth/google')
-    .wait(2500)
-    .insert('#identifierId', GOOGLE_EMAIL)
-    .click('#identifierNext content')
-    .wait(2500)
-    .insert('input[type="password"]', GOOGLE_PASSWORD)
-    .click('#passwordNext content')
-    .wait('a[href="/api/logout"]');
+    .wait('#Email')
+    .type(GOOGLE_EMAIL, '#Email')
+    .click('.rc-button-submit')
+    .wait(1000)
+    .type(GOOGLE_PASSWORD, '#Passwd')
+    .click('#signIn')
+    .wait('#submit_approve_access')
+    .evaluate(() => {
+      return new Promise((resolve, reject) => {
+        setInterval(() => {
+          const { disabled } = document.querySelector('#submit_approve_access');
+
+          if (!disabled) {
+            resolve();
+          }
+        }, 100);
+      });
+    });
+
+  await page.click('#submit_approve_access');
+
+  await page.wait('a[href="/api/logout"]');
+
+  return page;
 };

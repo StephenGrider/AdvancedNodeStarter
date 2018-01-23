@@ -1,5 +1,6 @@
 jest.setTimeout(25000);
 const { Chromeless } = require('chromeless');
+const login = require('../helpers/login');
 
 let page;
 
@@ -28,21 +29,7 @@ test('Logs in', async () => {
   //   .click('#passwordNext content')
   //   .wait('a[href="/api/logout"]');
 
-  await page
-    .goto('http://localhost:3000/auth/google')
-    .wait('#Email')
-    .type(GOOGLE_EMAIL, '#Email')
-    .click('.rc-button-submit')
-    .wait(1000)
-    .type(GOOGLE_PASSWORD, '#Passwd')
-    .click('#signIn')
-    .wait(3500);
-
-  try {
-    await page.click('#submit_approve_access');
-  } catch (err) {}
-
-  await page.wait('a[href="/api/logout"]');
+  await login(page);
 
   const anchor = await page.evaluate(
     () => document.querySelector('a[href="/api/logout"]').innerHTML
