@@ -13,7 +13,7 @@ afterEach(async () => {
 
 test('Loads the homepage', async () => {
   console.log('IM HERE!');
-  const p = await page.goto('localhost:3000').html();
+  const p = await page.goto('http://localhost:3000').html();
 
   console.log(p);
   const h1 = await page.evaluate(() => document.querySelector('h1').innerHTML);
