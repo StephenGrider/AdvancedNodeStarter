@@ -12,12 +12,14 @@ cache:
   directories:
     - node_modules
 before_install:
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+
 install:
   - npm install
   - npm install --prefix client
   - npm run heroku-postbuild
+before_script:
 script:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - nohup npm run start &
   - sleep 10
   - npm run test
