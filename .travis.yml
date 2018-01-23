@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "7"
+dist: trusty
+sudo: false
+addons:
+  chrome: stable
+cache:
+  yarn: true
+  directories:
+    - node_modules
+install:
+  - npm install
+before_script:
+  - heroku-postbuild
+script:
+  - npm run start
+  - npm run test
