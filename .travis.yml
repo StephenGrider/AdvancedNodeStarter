@@ -5,6 +5,8 @@ dist: trusty
 sudo: false
 addons:
   chrome: stable
+env:
+  - NODE_ENV=production
 cache:
   yarn: true
   directories:
@@ -12,6 +14,8 @@ cache:
 install:
   - npm install
   - npm install --prefix client
+  - npm run heroku-postbuild
 script:
-  - npm run dev
+  - nohup npm run start &
+  - sleep 10
   - npm run test
