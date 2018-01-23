@@ -4,11 +4,7 @@ const { Chromeless } = require('chromeless');
 let page;
 
 beforeEach(() => {
-  page = new Chromeless(
-    {
-      // cdp: { port: 1235 }
-    }
-  );
+  page = new Chromeless();
 });
 
 afterEach(async () => {

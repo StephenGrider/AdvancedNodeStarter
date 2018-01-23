@@ -8,9 +8,9 @@ addons:
 env:
   - NODE_ENV=production
 cache:
-  yarn: true
   directories:
     - node_modules
+    - client/node_modules
 install:
   - npm install
   - npm install --prefix client
