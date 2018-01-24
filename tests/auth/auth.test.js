@@ -1,11 +1,18 @@
 const { login } = require('../helpers/auth');
-const Page = require('../helpers/page');
+const puppeteer = require('puppeteer');
 
-let page;
+let page, browser;
 
 beforeEach(async () => {
-  page = Page();
+  browser = await puppeteer.launch({
+    headless: true
+  });
+  page = await browser.newPage();
   await login(page);
+});
+
+afterEach(async () => {
+  await browser.close();
 });
 
 test('Logs in', async () => {
