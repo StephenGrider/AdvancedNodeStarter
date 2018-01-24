@@ -15,4 +15,4 @@ script:
   - nohup npm run lt &
   - nohup npm run start &
   - sleep 5
-  - npm run test
+  - npm run test:travis
