@@ -4,7 +4,7 @@ const { Chromeless } = require('chromeless');
 let page;
 
 beforeEach(() => {
-  page = new Chromeless();
+  page = new Chromeless({ remote: true });
 });
 
 afterEach(async () => {
@@ -13,7 +13,7 @@ afterEach(async () => {
 
 test('Loads the homepage', async () => {
   const h1 = await page
-    .goto('http://localhost:3000')
+    .goto(require('../url'))
     .evaluate(() => document.querySelector('h1').innerHTML);
 
   expect(h1).toEqual('Emaily!');

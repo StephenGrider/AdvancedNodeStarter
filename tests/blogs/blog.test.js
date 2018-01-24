@@ -6,6 +6,7 @@ let page;
 
 beforeEach(() => {
   page = new Chromeless({
+    remote: true,
     implicitWait: true
   });
 });
