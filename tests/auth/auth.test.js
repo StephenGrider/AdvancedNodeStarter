@@ -14,9 +14,6 @@ afterEach(async () => {
   await page.end();
 });
 
-const GOOGLE_EMAIL = 'devemaily@gmail.com';
-const GOOGLE_PASSWORD = 'mydevaccount';
-
 test('Logs in', async () => {
   await login(page);
 

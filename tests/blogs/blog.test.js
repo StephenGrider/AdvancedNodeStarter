@@ -14,7 +14,7 @@ afterEach(async () => {
   await page.end();
 });
 
-test('Navigates to blogs index', async () => {
+test('Header navigates to blogs index', async () => {
   await login(page);
 
   const url = await page
