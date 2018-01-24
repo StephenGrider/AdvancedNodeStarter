@@ -1,17 +1,23 @@
 const { login } = require('../helpers/auth');
-const Page = require('../helpers/page');
+const puppeteer = require('puppeteer');
 
-let page;
+let page, browser;
 
 beforeEach(async () => {
-  page = Page();
+  browser = await puppeteer.launch({
+    headless: false
+  });
+  page = await browser.newPage();
   await login(page);
 });
 
+afterEach(async () => {
+  await browser.close();
+});
+
 test('Header navigates to blogs index', async () => {
-  const url = await page
-    .click('ul.right a')
-    .evaluate(() => window.location.pathname);
+  await page.click('ul.right a');
+  const url = await page.evaluate(() => window.location.pathname);
 
   expect(url).toEqual('/blogs');
 });

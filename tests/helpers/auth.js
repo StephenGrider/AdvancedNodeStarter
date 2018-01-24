@@ -26,10 +26,10 @@ module.exports = {
     const session = await createSession();
     const sig = new Keygrip([keys.cookieKey]).sign(`session=${session}`);
 
-    await page
-      .setCookies('session', session)
-      .setCookies('session.sig', sig)
-      .goto(require('../url'))
-      .wait('a[href="/api/logout"]');
+    await page.goto(require('../url'));
+    await page.setCookie({ name: 'session', value: session });
+    await page.setCookie({ name: 'session.sig', value: sig });
+    await page.goto(require('../url'));
+    await page.waitFor('a[href="/api/logout"]');
   }
 };

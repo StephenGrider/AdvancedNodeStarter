@@ -1,15 +1,45 @@
-const Page = require('../helpers/page');
+const puppeteer = require('puppeteer');
 
-let page;
+let page, browser;
 
 beforeEach(async () => {
-  page = Page();
+  browser = await puppeteer.launch({
+    headless: false
+  });
+  page = await browser.newPage();
+});
+
+afterEach(async () => {
+  await browser.close();
 });
 
 test('Loads the homepage', async () => {
-  const h1 = await page
-    .goto(require('../url'))
-    .evaluate(() => document.querySelector('h1').innerHTML);
+  await page.goto(require('../url'));
+  const h1 = await page.evaluate(() => document.querySelector('h1').innerHTML);
+  expect(h1).toEqual('Emaily!');
+});
+
+test('Loads the homepage', async () => {
+  await page.goto(require('../url'));
+  const h1 = await page.evaluate(() => document.querySelector('h1').innerHTML);
+
+  expect(h1).toEqual('Emaily!');
+});
+test('Loads the homepage', async () => {
+  await page.goto(require('../url'));
+  const h1 = await page.evaluate(() => document.querySelector('h1').innerHTML);
+
+  expect(h1).toEqual('Emaily!');
+});
+test('Loads the homepage', async () => {
+  await page.goto(require('../url'));
+  const h1 = await page.evaluate(() => document.querySelector('h1').innerHTML);
+
+  expect(h1).toEqual('Emaily!');
+});
+test('Loads the homepage', async () => {
+  await page.goto(require('../url'));
+  const h1 = await page.evaluate(() => document.querySelector('h1').innerHTML);
 
   expect(h1).toEqual('Emaily!');
 });
