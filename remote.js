@@ -5,9 +5,7 @@ async function run() {
     remote: true
   });
 
-  const screenshot = await chromeless
-    .goto('https://chromelesstesteraws.localtunnel.me')
-    .screenshot();
+  const screenshot = await chromeless.goto('https://google.com').screenshot();
 
   console.log(screenshot); // prints local file path or S3 url
 
