@@ -12,7 +12,7 @@
       "NODE_ENV=test concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild":
       "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "test": "jest --forceExit --runInBand",
+    "test": "jest --forceExit",
     "lt": "lt -p 3000 -s chromelesstesteraws"
   },
   "author": "",
