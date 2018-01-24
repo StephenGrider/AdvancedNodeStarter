@@ -4,7 +4,8 @@ let page, browser;
 
 beforeEach(async () => {
   browser = await puppeteer.launch({
-    headless: true
+    headless: true,
+    args: ['--no-sandbox']
   });
   page = await browser.newPage();
 });
