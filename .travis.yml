@@ -2,9 +2,6 @@ language: node_js
 node_js:
   - "8"
 dist: trusty
-sudo: required
-addons:
-  chrome: stable
 env:
   - NODE_ENV=production
 cache:
@@ -14,12 +11,8 @@ cache:
 install:
   - npm install
   - npm run heroku-postbuild
-before_script:
-  - sudo chown root /opt/google/chrome/chrome-sandbox
-  - sudo chmod 4755 /opt/google/chrome/chrome-sandbox
 script:
   - nohup npm run lt &
-  - nohup google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - nohup npm run start &
   - sleep 5
   - npm run test
