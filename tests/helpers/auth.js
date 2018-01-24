@@ -12,11 +12,11 @@ mongoose.connect(keys.mongoURI, { useMongoClient: true });
 module.exports = {
   async login(page) {
     await page.goto(require('../url'));
-    const user = await new User({ googleId: '1' });
+    const user = await new User({ googleId: '1' }).save();
 
     let session = JSON.stringify({
       passport: {
-        user: '5a668b72ffeafa1ab3313ba6'
+        user: user._id
       }
     });
     session = Buffer.from(session).toString('base64');
