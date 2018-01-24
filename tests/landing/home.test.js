@@ -1,10 +1,10 @@
 jest.setTimeout(15000);
-const { Chromeless } = require('chromeless');
+const Page = require('../helpers/page');
 
 let page;
 
 beforeEach(() => {
-  page = new Chromeless({ remote: true });
+  page = Page();
 });
 
 afterEach(async () => {

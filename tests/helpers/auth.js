@@ -9,25 +9,29 @@ const User = mongoose.model('users');
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, { useMongoClient: true });
 
+const createSession = async () => {
+  const user = await new User({ googleId: '1' }).save();
+
+  const session = JSON.stringify({
+    passport: {
+      user: user._id.toString()
+    }
+  });
+
+  return Buffer.from(session).toString('base64');
+};
+
 module.exports = {
   async login(page) {
-    await page.goto(require('../url'));
-    const user = await new User({ googleId: '1' }).save();
+    const session = await createSession();
+    const sig = new Keygrip([keys.cookieKey]).sign(`session=${session}`);
 
-    let session = JSON.stringify({
-      passport: {
-        user: user._id
-      }
-    });
-    session = Buffer.from(session).toString('base64');
-
-    const keygrip = new Keygrip([keys.cookieKey]);
-
-    page.setCookies('session', session);
-    page.setCookies('session.sig', keygrip.sign(`session=${session}`));
-
-    await page.goto(require('../url')).wait('a[href="/api/logout"]');
-  },
-
-  logout(page) {}
+    await page
+      .goto(require('../url'))
+      .clearCookies()
+      .setCookies('session', session)
+      .setCookies('session.sig', sig)
+      .goto(require('../url'))
+      .wait('a[href="/api/logout"]');
+  }
 };
