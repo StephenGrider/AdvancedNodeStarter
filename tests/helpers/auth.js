@@ -11,7 +11,7 @@ mongoose.connect(keys.mongoURI, { useMongoClient: true });
 
 module.exports = {
   async login(page) {
-    await page.goto('http://localhost:3000');
+    await page.goto(require('../url'));
     const user = await new User({ googleId: '1' });
 
     let session = JSON.stringify({
@@ -26,7 +26,7 @@ module.exports = {
     page.setCookies('session', session);
     page.setCookies('session.sig', keygrip.sign(`session=${session}`));
 
-    await page.goto('http://localhost:3000').wait('a[href="/api/logout"]');
+    await page.goto(require('../url')).wait('a[href="/api/logout"]');
   },
 
   logout(page) {}
