@@ -1,14 +1,9 @@
-jest.setTimeout(15000);
 const Page = require('../helpers/page');
 
 let page;
 
-beforeEach(() => {
+beforeEach(async () => {
   page = Page();
-});
-
-afterEach(async () => {
-  await page.end();
 });
 
 test('Loads the homepage', async () => {

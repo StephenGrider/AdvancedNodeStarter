@@ -1,20 +1,14 @@
-jest.setTimeout(25000);
 const { login } = require('../helpers/auth');
 const Page = require('../helpers/page');
 
 let page;
 
-beforeEach(() => {
+beforeEach(async () => {
   page = Page();
-});
-
-afterEach(async () => {
-  await page.end();
+  await login(page);
 });
 
 test('Logs in', async () => {
-  await login(page);
-
   const anchor = await page.evaluate(
     () => document.querySelector('a[href="/api/logout"]').innerHTML
   );
