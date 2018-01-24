@@ -10,8 +10,9 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild":
       "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "test": "jest --forceExit",
+    "test": "jest --forceExit --runInBand",
     "test:travis": "jest --forceExit -w 5",
+    "test:fast": "TEST_MODE=fast jest --forceExit -w 12",
     "lt": "lt -p 3000 -s chromelesstesteraws"
   },
   "jest": {
