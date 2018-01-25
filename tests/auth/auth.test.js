@@ -1,25 +1,18 @@
-const { login } = require('../helpers/auth');
-const puppeteer = require('puppeteer');
+const Page = require('../helpers/page');
 
 let page, browser;
 
 beforeEach(async () => {
-  browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox']
-  });
-  page = await browser.newPage();
-  await login(page);
+  page = await Page.build();
+  await page.login();
 });
 
 afterEach(async () => {
-  await browser.close();
+  await page.close();
 });
 
 test('Logs in', async () => {
-  const anchor = await page.evaluate(
-    () => document.querySelector('a[href="/api/logout"]').innerHTML
-  );
+  const anchor = await page.getContentsOf('a[href="/api/logout"]');
 
   expect(anchor).toEqual('Logout');
 });
