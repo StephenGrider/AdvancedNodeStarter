@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import BlogField from './BlogField';
-import validateEmails from '../../utils/validateEmails';
 import formFields from './formFields';
 
 class BlogForm extends Component {
@@ -42,8 +41,6 @@ class BlogForm extends Component {
 
 function validate(values) {
   const errors = {};
-
-  errors.recipients = validateEmails(values.recipients || '');
 
   _.each(formFields, ({ name }) => {
     if (!values[name]) {
