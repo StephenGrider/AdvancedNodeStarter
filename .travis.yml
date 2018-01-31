@@ -2,19 +2,12 @@ language: node_js
 node_js:
   - "8"
 dist: trusty
-addons:
-  apt:
-    packages:
-      - libnss3
 env:
   - NODE_ENV=production
 cache:
   directories:
     - node_modules
     - client/node_modules
-before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
 install:
   - npm install
   - npm run heroku-postbuild
