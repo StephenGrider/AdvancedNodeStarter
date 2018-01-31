@@ -3,6 +3,7 @@ const Path = require('path-parser');
 const { URL } = require('url');
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
+const AWS = require('aws-sdk');
 
 const Blog = mongoose.model('blogs');
 
