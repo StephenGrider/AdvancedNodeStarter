@@ -9,7 +9,8 @@
     "server": "nodemon index.js --ignore tests",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "build":
+      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "test": "jest --forceExit"
   },
   "jest": {
@@ -25,9 +26,7 @@
     "mongoose": "^4.11.1",
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0",
-    "path-parser": "^2.0.2"
-  },
-  "devDependencies": {
+    "path-parser": "^2.0.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^22.1.0",
@@ -37,5 +36,6 @@
     "nodemon": "^1.11.0",
     "puppeteer": "^1.0.0",
     "regenerator-runtime": "^0.11.1"
-  }
+  },
+  "devDependencies": {}
 }
