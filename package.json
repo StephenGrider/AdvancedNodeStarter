@@ -8,8 +8,7 @@
     "server": "nodemon index.js --ignore tests",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":
-      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "test": "jest --forceExit"
   },
   "jest": {
@@ -19,6 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.187.0",
+    "babel-preset-env": "^1.6.1",
     "body-parser": "^1.17.2",
     "concurrently": "^3.5.0",
     "cookie-session": "^2.0.0-beta.2",
@@ -31,5 +31,10 @@
     "passport-google-oauth20": "^1.0.0",
     "path-parser": "^2.0.2",
     "puppeteer": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.1.0",
+    "regenerator-runtime": "^0.11.1"
   }
 }

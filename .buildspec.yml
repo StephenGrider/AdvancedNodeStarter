@@ -1,0 +1,22 @@
+env:
+  variables:
+    NODE_ENV: production
+phases:
+  install:
+    commands:
+      - apt-get update
+      - apt-get -y upgrade
+      - apt-get install xvfb
+      - cp xvfb.init /etc/init.d/xvfb
+      - chmod +x /etc/init.d/xvfb
+      - update-rc.d xvfb defaults
+      - service xvfb start
+      - npm install
+  pre_build:
+    commands:
+      - npm run heroku-postbuild
+  build:
+    commands:
+      - nohup npm run start &
+      - sleep 3
+      - npm run test
