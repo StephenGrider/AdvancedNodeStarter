@@ -7,6 +7,8 @@ phases:
   install:
     commands:
       - npm install
+      - sudo apt-get update
+      - sudo apt-get install libx11-xcb-dev
   pre_build:
     commands:
       - npm run build
