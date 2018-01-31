@@ -10,7 +10,7 @@ cache:
     - client/node_modules
 install:
   - npm install
-  - npm run heroku-postbuild
+  - npm run build
 script:
   - nohup npm run start &
   - sleep 3

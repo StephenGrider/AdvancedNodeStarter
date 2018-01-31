@@ -9,7 +9,7 @@ phases:
       - npm install
   pre_build:
     commands:
-      - npm run heroku-postbuild
+      - npm run build
   build:
     commands:
       - nohup npm run start:babel &
