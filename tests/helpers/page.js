@@ -4,11 +4,16 @@ const sessionFactory = require('../factories/sessionFactory');
 
 class Page {
   static async build(opts) {
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox'],
-      ...opts
-    });
+    const browser = await puppeteer.launch(
+      Object.assign(
+        {},
+        {
+          headless: true,
+          args: ['--no-sandbox']
+        },
+        opts
+      )
+    );
 
     const page = new Page({
       browser,
