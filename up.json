@@ -1,3 +1,9 @@
 {
-  "name": "blog"
+  "name": "blog",
+  "hooks": {
+    "build": ["npm run build", "npm run build:server"]
+  },
+  "proxy": {
+    "command": "node server.js"
+  }
 }
