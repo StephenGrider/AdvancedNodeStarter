@@ -6,13 +6,6 @@ env:
 phases:
   install:
     commands:
-      - apt-get update
-      - apt-get -y upgrade
-      - apt-get -y install xvfb
-      - cp xvfb.init /etc/init.d/xvfb
-      - chmod +x /etc/init.d/xvfb
-      - update-rc.d xvfb defaults
-      - service xvfb start
       - npm install
   pre_build:
     commands:
