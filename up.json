@@ -3,6 +3,9 @@
   "hooks": {
     "build": ["npm run build", "npm run build:server"]
   },
+  "environment": {
+    "NODE_ENV": "production"
+  },
   "proxy": {
     "command": "node server.js"
   }
