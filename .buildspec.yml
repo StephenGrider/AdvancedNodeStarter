@@ -12,6 +12,6 @@ phases:
       - npm run heroku-postbuild
   build:
     commands:
-      - nohup npm run start &
+      - nohup npm run start:babel &
       - sleep 3
       - npm run test
