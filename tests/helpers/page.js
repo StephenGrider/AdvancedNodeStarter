@@ -42,7 +42,7 @@ class Page {
     await this._page.setCookie({ name: 'session', value: session });
     await this._page.setCookie({ name: 'session.sig', value: sig });
     await this._page.goto(require('../url'));
-    await this._page.waitFor('a[href="/api/logout"]');
+    await this._page.waitFor('a[href="/auth/logout"]');
   }
 
   async goHome() {

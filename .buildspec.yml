@@ -3,10 +3,6 @@ version: 0.2
 env:
   variables:
     NODE_ENV: production
-cache:
-  paths:
-    - 'node_modules'
-    - 'client/node_modules'
 phases:
   install:
     commands:

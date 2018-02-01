@@ -10,7 +10,7 @@ class Header extends Component {
       case false:
         return (
           <li>
-            <a href="/auth/google">Login With Google</a>
+            <a href={'/auth/google'}>Login With Google</a>
           </li>
         );
       default:
@@ -19,7 +19,7 @@ class Header extends Component {
             <Link to="/blogs">Blogs</Link>
           </li>,
           <li key="2">
-            <a href="/api/logout">Logout</a>
+            <a href={'/auth/logout'}>Logout</a>
           </li>
         ];
     }

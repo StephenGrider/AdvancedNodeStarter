@@ -12,7 +12,7 @@ afterEach(async () => {
 });
 
 test('Logs in', async () => {
-  const anchor = await page.getContentsOf('a[href="/api/logout"]');
+  const anchor = await page.getContentsOf('a[href="/auth/logout"]');
 
   expect(anchor).toEqual('Logout');
 });
