@@ -12,7 +12,9 @@ const blogSchema = new Schema({
 blogSchema.set('toJSON', { getters: true });
 
 function filePath(file) {
-  return `${keys.s3BucketUrl}${file}`;
+  if (file) {
+    return `${keys.s3BucketUrl}${file}`;
+  }
 }
 
 mongoose.model('blogs', blogSchema);
