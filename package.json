@@ -8,8 +8,7 @@
     "server": "nodemon index.js --ignore tests",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build":
-      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "test": "jest --forceExit"
   },
   "jest": {
@@ -18,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.188.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^22.1.0",
@@ -35,6 +35,7 @@
     "path-parser": "^2.0.2",
     "puppeteer": "^1.0.0",
     "regenerator-runtime": "^0.11.1",
+    "uuid": "^3.2.1",
     "webpack": "^3.10.0"
   },
   "devDependencies": {}
