@@ -2,45 +2,29 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchBlog } from '../../actions';
 
-class BlogList extends Component {
+class BlogShow extends Component {
   componentDidMount() {
-    this.props.fetchBlogs();
-  }
-
-  renderImage({ file }) {
-    if (file) {
-      return (
-        <div className="card-image">
-          <img src={file} />
-        </div>
-      );
-    }
-  }
-
-  renderBlogs() {
-    return this.props.blogs.map(blog => {
-      return (
-        <div className="card darken-1 horizontal" key={blog._id}>
-          {this.renderImage(blog)}
-
-          <div className="card-stacked">
-            <div className="card-content">
-              <span className="card-title">{blog.title}</span>
-              <p>{blog.content}</p>
-            </div>
-          </div>
-        </div>
-      );
-    });
+    this.props.fetchBlog(this.props.match.params._id);
   }
 
   render() {
-    return <div>{this.renderBlogs()}</div>;
+    if (!this.props.blog) {
+      return '';
+    }
+
+    const { title, content } = this.props.blog;
+
+    return (
+      <div>
+        <h3>{title}</h3>
+        <p>{content}</p>
+      </div>
+    );
   }
 }
 
 function mapStateToProps({ blogs }, ownProps) {
-  return { blogs };
+  return { blog: blogs[ownProps.match.params._id] };
 }
 
-export default connect(mapStateToProps, { fetchBlog })(BlogList);
+export default connect(mapStateToProps, { fetchBlog })(BlogShow);

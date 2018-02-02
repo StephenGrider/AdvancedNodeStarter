@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchBlogs } from '../../actions';
 
 class BlogList extends Component {
@@ -28,6 +29,9 @@ class BlogList extends Component {
             <div className="card-content">
               <span className="card-title">{blog.title}</span>
               <p>{blog.content}</p>
+            </div>
+            <div className="card-action">
+              <Link to={`/blogs/${blog._id}`}>Read</Link>
             </div>
           </div>
         </div>
