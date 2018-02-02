@@ -6,6 +6,7 @@ const blogSchema = new Schema({
   title: String,
   content: String,
   file: { type: String, get: filePath },
+  createdAt: { type: Date, default: Date.now },
   _user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 

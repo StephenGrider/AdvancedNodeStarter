@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import map from 'lodash/map';
 import { connect } from 'react-redux';
-import { fetchBlogs } from '../../actions';
+import { fetchBlog } from '../../actions';
 
 class BlogList extends Component {
   componentDidMount() {
@@ -19,7 +18,7 @@ class BlogList extends Component {
   }
 
   renderBlogs() {
-    return map(this.props.blogs, blog => {
+    return this.props.blogs.map(blog => {
       return (
         <div className="card darken-1 horizontal" key={blog._id}>
           {this.renderImage(blog)}
@@ -40,8 +39,8 @@ class BlogList extends Component {
   }
 }
 
-function mapStateToProps({ blogs }) {
+function mapStateToProps({ blogs }, ownProps) {
   return { blogs };
 }
 
-export default connect(mapStateToProps, { fetchBlogs })(BlogList);
+export default connect(mapStateToProps, { fetchBlog })(BlogList);
