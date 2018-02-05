@@ -1,0 +1,6 @@
+{
+  "dev": {
+    "driver": "mongodb",
+    "database": "blog_testing"
+  }
+}

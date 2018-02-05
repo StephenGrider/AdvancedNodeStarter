@@ -1,11 +1,13 @@
 const keys = require('../config/keys');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const fileSchema = require('./File');
 
 const blogSchema = new Schema({
   title: String,
   content: String,
   file: { type: String, get: filePath },
+  files: [fileSchema],
   createdAt: { type: Date, default: Date.now },
   _user: { type: Schema.Types.ObjectId, ref: 'User' }
 });

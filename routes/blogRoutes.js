@@ -26,6 +26,7 @@ module.exports = app => {
       title,
       content,
       file,
+      files: [{ url: file }],
       _user: req.user.id
     });
 
