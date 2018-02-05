@@ -13,7 +13,7 @@ class BlogList extends Component {
     if (files.length) {
       return (
         <div className="card-image">
-          <img src={files[0].url} />
+          <img src={files[0].url} alt={files[0].url} />
         </div>
       );
     }

@@ -9,7 +9,7 @@ class BlogShow extends Component {
 
   renderImages() {
     return this.props.blog.files.map(({ url }) => {
-      return <img key={url} src={url} />;
+      return <img key={url} alt={url} src={url} />;
     });
   }
 
