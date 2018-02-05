@@ -18,7 +18,7 @@ export async function up() {
 
   while (blog) {
     if ((!blog.files || !blog.files.length) && blog.file) {
-      blog.files.push({ url: blog.file });
+      blog.files.push({ url: blog.toObject().file });
       await blog.save();
     }
 
