@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports = (opts = {}) => {
-  const User = mongoose.model('users');
+  const User = mongoose.model('User');
 
   return new User(
     Object.assign(

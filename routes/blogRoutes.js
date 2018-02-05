@@ -22,11 +22,16 @@ module.exports = app => {
   app.post('/api/blogs', requireLogin, async (req, res) => {
     const { title, content, file } = req.body;
 
+    let files = [];
+    if (file) {
+      files.push({ url: file });
+    }
+
     const blog = new Blog({
       title,
       content,
       file,
-      files: [{ url: file }],
+      files,
       _user: req.user.id
     });
 
