@@ -9,11 +9,11 @@ class BlogList extends Component {
     this.props.fetchBlogs();
   }
 
-  renderImage({ file }) {
-    if (file) {
+  renderImage({ files }) {
+    if (files.length) {
       return (
         <div className="card-image">
-          <img src={file} />
+          <img src={files[0].url} />
         </div>
       );
     }

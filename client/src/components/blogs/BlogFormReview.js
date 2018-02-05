@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 
 class BlogFormReview extends Component {
-  state = { file: null };
+  state = { files: {} };
 
   renderFields() {
     const { formValues } = this.props;
@@ -41,16 +41,36 @@ class BlogFormReview extends Component {
     );
   }
 
+  renderInputs() {
+    const numberOfInputs = Object.keys(this.state.files).length + 1;
+
+    return _.times(numberOfInputs, index => {
+      return (
+        <input
+          key={index}
+          onChange={this.onFileChange.bind(this, index)}
+          type="file"
+          accept="image/*"
+        />
+      );
+    });
+  }
+
   onSubmit(event) {
     event.preventDefault();
 
     const { submitBlog, history, formValues } = this.props;
 
-    submitBlog(formValues, this.state.file, history);
+    submitBlog(formValues, this.state.files, history);
   }
 
-  onFileChange(event) {
-    this.setState({ file: event.target.files[0] });
+  onFileChange(index, event) {
+    this.setState({
+      files: {
+        ...this.state.files,
+        [index]: event.target.files[0]
+      }
+    });
   }
 
   render() {
@@ -61,11 +81,7 @@ class BlogFormReview extends Component {
 
         <h5>Add an image?</h5>
 
-        <input
-          onChange={this.onFileChange.bind(this)}
-          type="file"
-          accept="image/*"
-        />
+        {this.renderInputs()}
 
         {this.renderButtons()}
       </form>
