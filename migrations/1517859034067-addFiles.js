@@ -29,21 +29,4 @@ export async function up() {
 /**
  * Make any changes that UNDO the up function side effects here (if possible)
  */
-export async function down() {
-  const cursor = mongoose
-    .model('blogs')
-    .find({})
-    .cursor();
-
-  let blog = await cursor.next();
-
-  while (blog) {
-    if (!blog.file && blog.files.length) {
-      blog.file = blog.toObject().files[0].url;
-
-      await blog.save();
-    }
-
-    blog = await cursor.next();
-  }
-}
+export async function down() {}
