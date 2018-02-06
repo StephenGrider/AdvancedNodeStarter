@@ -28,7 +28,8 @@ require('./routes/authRoutes')(app);
 require('./routes/blogRoutes')(app);
 require('./routes/uploadRoutes')(app);
 
-if (process.env.NODE_ENV === 'production') {
+const { NODE_ENV } = process.env;
+if (NODE_ENV in ['ci', 'production']) {
   app.use(express.static('client/build'));
 
   const path = require('path');
