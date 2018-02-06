@@ -8,8 +8,9 @@
     "server": "nodemon index.js --ignore tests",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "heroku-postbuild": "npm run build",
+    "build":
+      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "heroku-postbuild": "npm run build && npm install --g migrate-mongoose",
     "test": "jest --forceExit",
     "migrate": "migrate -d $MIGRATE_dbConnectionUri"
   },
