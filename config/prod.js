@@ -5,5 +5,6 @@ module.exports = {
   mongoURI: process.env.MONGO_URI,
   cookieKey: process.env.COOKIE_KEY,
   s3Bucket: process.env.S3_BUCKET,
-  s3BucketUrl: process.env.S3_BUCKET_URL
+  s3BucketUrl: process.env.S3_BUCKET_URL,
+  redisUrl: process.env.REDIS_URL
 };
