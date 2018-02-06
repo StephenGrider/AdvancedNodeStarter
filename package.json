@@ -21,11 +21,6 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.188.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-jest": "^22.1.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
     "body-parser": "^1.17.2",
     "concurrently": "^3.5.0",
     "cookie-session": "^2.0.0-beta.2",
@@ -39,8 +34,7 @@
     "path-parser": "^2.0.2",
     "puppeteer": "^1.0.0",
     "regenerator-runtime": "^0.11.1",
-    "uuid": "^3.2.1",
-    "webpack": "^3.10.0"
+    "uuid": "^3.2.1"
   },
   "devDependencies": {}
 }
