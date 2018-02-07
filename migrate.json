@@ -1,6 +1,0 @@
-{
-  "dbConnectionUri":
-    "mongodb://stephen:password@ds111598.mlab.com:11598/blog_testing",
-  "migrationsDir": "migrations",
-  "es6": true
-}
