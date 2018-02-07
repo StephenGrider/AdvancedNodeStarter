@@ -16,13 +16,12 @@ export const handleToken = token => async dispatch => {
 export const submitBlog = (values, files, history) => async dispatch => {
   let fileKeys = [];
 
-  for (let id in files) {
-    const file = files[id];
+  for (let file of files) {
     const uploadConfig = await axios.get(`/api/upload?type=${file.type}`);
 
     await axios.put(uploadConfig.data.url, file, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': file.type
       }
     });
 

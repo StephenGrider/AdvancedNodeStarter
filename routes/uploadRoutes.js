@@ -8,15 +8,20 @@ const s3 = new AWS.S3({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
+const EXTENSIONS = {
+  'image/gif': 'gif',
+  'image/jpeg': 'jpeg',
+  'image/png': 'png'
+};
+
 module.exports = app => {
   app.get('/api/upload', requireLogin, (req, res) => {
-    const key = `${uuid()}.${req.query.type.replace('image/', '')}`;
+    const key = `${req.user.id}/${uuid()}.${EXTENSIONS[req.query.type]}`;
 
     const url = s3.getSignedUrl('putObject', {
       Bucket: keys.s3Bucket,
       Key: key,
-      ACL: 'public-read',
-      ContentType: 'multipart/form-data'
+      ContentType: req.query.type
     });
 
     res.send({ key, url });
