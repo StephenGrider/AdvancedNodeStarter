@@ -5,5 +5,6 @@ module.exports = {
   mongoURI: 'mongodb://stephen:password@ds111598.mlab.com:11598/blog_testing',
   cookieKey: 'ihfkjasdhfkaushfkaurngakeurgkaeurhgkaeuhrgkaerhg',
   s3Bucket: 'my123-image-storage',
-  s3BucketUrl: 'https://s3-us-west-2.amazonaws.com/my123-image-storage/'
+  s3BucketUrl: 'https://s3-us-west-2.amazonaws.com/my123-image-storage/',
+  redisUrl: 'redis://127.0.0.1:6379'
 };
