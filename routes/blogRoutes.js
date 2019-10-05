@@ -20,9 +20,29 @@ module.exports = app => {
   });
 
   app.post('/api/blogs', requireLogin, async (req, res) => {
+    //redis is used to cach querys sent via this api to the server
+    //it helps to reduce the number of times we query the database
+
+    const redis = require('redis');
+    const redisUrl = 'redis://127.0.0.1:6379';
+    const client = redis.createClient(redisUrl);
+    const util = require('util');
+
+    //promisify converts callback functions to promise function
+    client.get = util.promisify(client.get);
+
+    //Do we have any cached data in redis related to this query
+    const cachedBlogs = client.get()
+
+    //if Yes, then respond to the request immediately
+
+    
+    //If no, query the database, get the response and save a copy of the response in redis database
+
+
     const { title, content } = req.body;
 
-    const blog = new Blog({
+    const blog = new Blog({ 
       title,
       content,
       _user: req.user.id
