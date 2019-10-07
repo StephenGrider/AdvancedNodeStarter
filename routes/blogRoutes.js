@@ -13,14 +13,7 @@ module.exports = app => {
     res.send(blog);
   });
 
-  app.get('/api/blogs', requireLogin, async (req, res) => {
-    const blogs = await Blog.find({ _user: req.user.id });
-
-    res.send(blogs);
-  });
-
-  app.post('/api/blogs', requireLogin, async (req, res) => {
-    //redis is used to cach querys sent via this api to the server
+  app.get('/api/blogs', requireLogin, async (req, res) => {//redis is used to cach querys sent via this api to the server
     //it helps to reduce the number of times we query the database
 
     const redis = require('redis');
@@ -32,14 +25,27 @@ module.exports = app => {
     client.get = util.promisify(client.get);
 
     //Do we have any cached data in redis related to this query
-    const cachedBlogs = client.get()
+    const cachedBlogs = await client.get(req.user.id)
 
     //if Yes, then respond to the request immediately
+    if (cachedBlogs) {
+      console.log('Cached Files, Served from cached')
+      return res.send(JSON.parse(cachedBlogs))
+    }
 
-    
     //If no, query the database, get the response and save a copy of the response in redis database
 
+    const blogs = await Blog.find({ _user: req.user.id });
+    console.log('Serving from mongodb')
+    res.send(blogs);
 
+    //save a copy to redis
+    //remember to set the items as a key-value pair
+    client.set(req.user.id, JSON.stringify(blogs))
+  });
+
+  app.post('/api/blogs', requireLogin, async (req, res) => {
+    
     const { title, content } = req.body;
 
     const blog = new Blog({ 
