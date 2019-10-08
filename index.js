@@ -9,6 +9,7 @@ const chalk = require('chalk')
 require('./models/User');
 require('./models/Blog');
 require('./services/passport');
+require('./services/cache')
 
 // database connection
 mongoose.connect(keys.mongoURI, {
