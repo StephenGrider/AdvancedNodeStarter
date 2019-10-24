@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer');
+const sessionFactory = require('./factories/sessionFactory');
+const userFactory = require('./factories/userFactory');
 
 let browser, page;
 //before each test, lauch chronium
@@ -34,28 +36,15 @@ test('CLick to route to google Oauth flow', async () => {
 });
 
 test('When Signed in, shows logout button', async () => {
-  const id = '5d95eb242addd453b815afe7';
-
-  const Buffer = require('safe-buffer').Buffer;
-
-  //creating a a session string
-  const sessionObject = {
-    passport: {
-      user: id
-    }
-  };
-  const sessionString = Buffer.from(JSON.stringify(sessionObject)).toString('base64');
-
-  const KeyGrip = require('keygrip')
-  const keys = require('../config/keys');
-  const keygrip = new KeyGrip([keys.cookieKey]);
-  const sig = keygrip.sign('session=' + sessionString);
+  const user = await userFactory();
+  const {session, sig } = sessionFactory(user)
   
-  console.log(sessionString, sig)
-  await page.setCookie({ name: 'session', value: sessionString });
+  console.log(session, sig)
+  await page.setCookie({ name: 'session', value: session });
   await page.setCookie({ name: 'session.sig', value: sig });
   await page.goto('localhost:3000');
+  await page.waitFor('a[href="/auth/logout"]')
 
   const text = await page.$eval('a[href="/auth/logout"]', el => el.innerHTML);
-  expect(text).toEqual('logout');
+  expect(text).toEqual('Logout');
 })
