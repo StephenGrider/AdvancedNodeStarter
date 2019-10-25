@@ -1,6 +1,6 @@
 langauge: node_js  # this specifies the programming langiage used for the integration
 node_js:  #this specifies the version of node_js used for this project
-- "8"
+  - "8"
 dist: trusty  #this is the type of server this ci is running on
 services:  #..this se=pecifies the array of services that travis ci will install to run the application in the VM
   -mongodb
@@ -16,6 +16,6 @@ install: #..package manger used, to install the node_modules
   - npm
   - npm run build
 scripts: #..this consist of the sets of commands that will run our travis ci configuration
-  - nohup yarn start &
+  - nohup npm start &
   - sleep 3
   - npm run test
