@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const redis = require('redis');
 const util = require('util');
 const chalk = require('chalk');
+const keys = require('../config/keys')
 
 //get redis url
-const redisUrl = 'redis://127.0.0.1:6379';
-const client = redis.createClient(redisUrl);
+const client = redis.createClient(keys.redisUrl);
 client.hget = util.promisify(client.hget);
 
 //getting the default query setup of mongoose
