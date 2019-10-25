@@ -1,4 +1,4 @@
-langauge: node_js  # this specifies the programming langiage used for the integration
+language: node_js  # this specifies the programming langiage used for the integration
 node_js:  #this specifies the version of node_js used for this project
   - "8"
 dist: trusty  #this is the type of server this ci is running on
