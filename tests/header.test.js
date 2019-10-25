@@ -3,10 +3,6 @@ const Page = require('./helpers/page')
 let page;
 //before each test, lauch chronium
 beforeEach(async () => {
-
-  //setTimeout
-  jest.setTimeout('300000')
-
   page = await Page.build()
   await page.goto('localhost:3000')
 });
@@ -18,7 +14,7 @@ afterEach(async () => {
 
 //run test
 test('We can lauch Chronium', async () => {
-  await page.getContentsOf('a.brand-logo');
+  const text = await page.getContentsOf('a.brand-logo');
 
   expect(text).toEqual('Blogster')
 })
@@ -32,6 +28,6 @@ test('CLick to route to google Oauth flow', async () => {
 test('When Signed in, shows logout button', async () => {
   await page.login();
 
-  await page.getContentsOf('a[href="/auth/logout"]')
+  const text = await page.getContentsOf('a[href="/auth/logout"]')
   expect(text).toEqual('Logout');
 })

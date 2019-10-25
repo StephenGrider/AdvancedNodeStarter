@@ -1,3 +1,6 @@
+//setTimeout
+jest.setTimeout('600000')
+
 require('../models/User')
 //creating a general setup for jest, this must run any test suite
 const mongoose = require('mongoose');
