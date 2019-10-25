@@ -10,10 +10,10 @@ env:  #this is the environmental variables used for the ci
   - PORT=3000
 cache: #this is to confusing, but it installs the other set pf directories that where ommitted during push of codebase to github
   directories:
-    -node_modules
+    - node_modules
     - client/node_modules
 install: #..package manger used, to install the node_modules
-  - npm
+  - npm install
   - npm run build
 scripts: #..this consist of the sets of commands that will run our travis ci configuration
   - nohup npm start &
