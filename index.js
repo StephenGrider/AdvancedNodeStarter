@@ -29,6 +29,13 @@ require('./routes/blogRoutes')(app);
 require('./routes/uploadRoutes')(app);
 
 const { NODE_ENV } = process.env;
+
+console.log('Running in mode:', NODE_ENV);
+console.log('Running in mode:', NODE_ENV);
+console.log('Running in mode:', NODE_ENV);
+console.log('Running in mode:', NODE_ENV);
+console.log('Running in mode:', NODE_ENV);
+
 if (NODE_ENV in ['ci', 'production']) {
   app.use(express.static('client/build'));
 
