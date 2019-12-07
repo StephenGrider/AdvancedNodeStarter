@@ -4,7 +4,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
-require('./services/cache');
+
 require('./models/User');
 require('./models/Blog');
 require('./services/passport');
@@ -26,9 +26,8 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/blogRoutes')(app);
-require('./routes/uploadRoutes')(app);
 
-if (['ci', 'production'].includes(process.env.NODE_ENV)) {
+if (['production'].includes(process.env.NODE_ENV)) {
   app.use(express.static('client/build'));
 
   const path = require('path');

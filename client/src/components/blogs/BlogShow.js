@@ -7,12 +7,6 @@ class BlogShow extends Component {
     this.props.fetchBlog(this.props.match.params._id);
   }
 
-  renderImages() {
-    return this.props.blog.files.map(({ url }) => {
-      return <img key={url} alt={url} src={url} />;
-    });
-  }
-
   render() {
     if (!this.props.blog) {
       return '';
@@ -24,7 +18,6 @@ class BlogShow extends Component {
       <div>
         <h3>{title}</h3>
         <p>{content}</p>
-        {this.renderImages()}
       </div>
     );
   }

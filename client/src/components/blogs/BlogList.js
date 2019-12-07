@@ -9,22 +9,10 @@ class BlogList extends Component {
     this.props.fetchBlogs();
   }
 
-  renderImage({ files }) {
-    if (files.length) {
-      return (
-        <div className="card-image">
-          <img src={files[0].url} alt={files[0].url} />
-        </div>
-      );
-    }
-  }
-
   renderBlogs() {
     return map(this.props.blogs, blog => {
       return (
         <div className="card darken-1 horizontal" key={blog._id}>
-          {this.renderImage(blog)}
-
           <div className="card-stacked">
             <div className="card-content">
               <span className="card-title">{blog.title}</span>

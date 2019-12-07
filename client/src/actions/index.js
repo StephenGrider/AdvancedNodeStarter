@@ -13,25 +13,8 @@ export const handleToken = token => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const submitBlog = (values, files, history) => async dispatch => {
-  let fileKeys = [];
-
-  for (let file of files) {
-    const uploadConfig = await axios.get(`/api/upload?type=${file.type}`);
-
-    await axios.put(uploadConfig.data.url, file, {
-      headers: {
-        'Content-Type': file.type
-      }
-    });
-
-    fileKeys.push(uploadConfig.data.key);
-  }
-
-  const res = await axios.post('/api/blogs', {
-    ...values,
-    files: fileKeys
-  });
+export const submitBlog = (values, history) => async dispatch => {
+  const res = await axios.post('/api/blogs', values);
 
   history.push('/blogs');
   dispatch({ type: FETCH_USER, payload: res.data });
