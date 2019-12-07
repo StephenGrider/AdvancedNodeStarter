@@ -43,7 +43,7 @@ mongoose.Query.prototype.exec = async function() {
       const value = Array.isArray(result)
         ? result.map(r => r.toJSON({ getters: false }))
         : result.toJSON({ getters: false });
-
+      console.log(this._hashKey, key, JSON.stringify(value), 'EX', EXPIRE_TIME);
       client.hset(this._hashKey, key, JSON.stringify(value), 'EX', EXPIRE_TIME);
 
       return result;
