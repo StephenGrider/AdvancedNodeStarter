@@ -7,6 +7,7 @@ const helpers = require('mongoose/lib/queryhelpers');
 const exec = mongoose.Query.prototype.exec;
 const client = redis.createClient(keys.redisUrl);
 client.hget = util.promisify(client.hget);
+client.hset = util.promisify(client.hset);
 
 const EXPIRE_TIME = 60;
 
@@ -43,7 +44,7 @@ mongoose.Query.prototype.exec = async function() {
       const value = Array.isArray(result)
         ? result.map(r => r.toJSON({ getters: false }))
         : result.toJSON({ getters: false });
-      console.log(this._hashKey, key, JSON.stringify(value), 'EX', EXPIRE_TIME);
+
       client.hset(this._hashKey, key, JSON.stringify(value), 'EX', EXPIRE_TIME);
 
       return result;
