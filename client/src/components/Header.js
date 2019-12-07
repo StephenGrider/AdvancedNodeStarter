@@ -16,7 +16,7 @@ class Header extends Component {
       default:
         return [
           <li key="3" style={{ margin: '0 10px' }}>
-            <Link to="/blogs">Blogs</Link>
+            <Link to="/blogs">My Blogs</Link>
           </li>,
           <li key="2">
             <a href={'/auth/logout'}>Logout</a>
@@ -27,13 +27,14 @@ class Header extends Component {
 
   render() {
     return (
-      <nav>
+      <nav className="indigo">
         <div className="nav-wrapper">
           <Link
             to={this.props.auth ? '/blogs' : '/'}
             className="left brand-logo"
+            style={{ marginLeft: '10px' }}
           >
-            Emaily
+            Blogster
           </Link>
           <ul className="right">{this.renderContent()}</ul>
         </div>
