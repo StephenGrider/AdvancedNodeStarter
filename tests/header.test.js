@@ -26,3 +26,24 @@ test('clicking login starts oath flow', async () => {
 
     expect(url).toMatch(/accounts\.google\.com/);
 })
+
+test('When signed in, shows logout button', async () => {
+    const id = '5e7eb5eebb0a48b791825530';
+
+    const Buffer = require('safe-buffer').Buffer;
+    const sessionObject = {
+        passport: {
+            user: id 
+        }
+    }
+    const sessionString = Buffer.from(
+            JSON.stringify(sessionObject) 
+    ).toString('base64')
+
+    const Keygrip = require('keygrip');
+    const keys = require('../config/keys')
+    const keygrip = new Keygrip([keys.cookieKey])
+    const sig = keygrip.sign('session=' + sessionString)
+
+    console.log(sessionString, sig)
+});
