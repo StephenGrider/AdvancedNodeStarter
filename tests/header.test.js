@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 const Page = require('./helpers/page')
 
 let page;
@@ -14,7 +13,7 @@ afterEach(async () => {
 
 test('the header has the correct text', async () => {
     
-    const text = await page.getContentOf('a.brand-logo')
+    const text = await page.getContentsOf('a.brand-logo')
     expect(text).toEqual('Blogster')
 });
 
@@ -27,6 +26,6 @@ test('clicking login starts oath flow', async () => {
 
 test('When signed in, shows logout button', async () => {
   await page.login()
-    const text = await page.getContentOf('a[href="/auth/logout"]')
+    const text = await page.getContentsOf('a[href="/auth/logout"]')
     expect(text).toEqual('Logout')
 });
