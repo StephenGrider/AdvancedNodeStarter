@@ -8,8 +8,7 @@
     "server": "nodemon index.js --ignore tests",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build":
-      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "heroku-postbuild": "npm run build"
   },
   "author": "",
@@ -25,7 +24,7 @@
     "mongoose": "^4.11.1",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
-    "passport-google-oauth20": "^1.0.0",
+    "passport-google-oauth20": "^2.0.0",
     "path-parser": "^2.0.2",
     "puppeteer": "^1.0.0",
     "redis": "^2.8.0",
