@@ -15,6 +15,9 @@ class Header extends Component {
         );
       default:
         return [
+          <li key="1" style={{margin: '0 10px'}}>
+            <Link to="/teams">My Teams</Link>
+          </li>,
           <li key="3" style={{ margin: '0 10px' }}>
             <Link to="/blogs">My Blogs</Link>
           </li>,
