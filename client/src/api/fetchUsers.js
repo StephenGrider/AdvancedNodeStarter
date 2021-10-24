@@ -13,4 +13,25 @@ export const postToken = async (token) => {
 }; 
 
 
+export const postBlog = async(values) =>{
+
+    return await axios.post('/api/blogs', values); 
+}; 
+
+
+export const getBlog = async (id) => {
+
+    return await axios.get(`/api/blog/${id}`); 
+
+}
+
+
+
+export const getBlogs = async (id) => {
+
+    return await axios.get(`/api/blogs`); 
+
+}
+
+
 
