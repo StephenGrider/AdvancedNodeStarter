@@ -1,6 +1,3 @@
-const puppeteer = require('puppeteer');
-const sessionFactory = require('./factories/sessionFactory');
-const userFactory = require('./factories/userFactory');
 const Page = require('./helpers/page');
 
 let page;
@@ -15,14 +12,13 @@ afterEach(async () => {
 });
 
 test('The header has the correct text', async () => {
-	const text = await page.$eval('a.brand-logo', (el) => el.innerHTML);
+	const text = await page.getContentsOf('a.brand-logo');
 
 	expect(text).toEqual('Blogster');
 });
 
 test('click login start OAuth flow', async () => {
 	await page.click('.right a');
-
 	const url = await page.url();
 
 	expect(url).toMatch(/accounts\.google.com/);
@@ -30,12 +26,6 @@ test('click login start OAuth flow', async () => {
 
 test('When signed in, shows logout button', async () => {
 	await page.login();
-	await page.goto('localhost:3000');
-	await page.waitFor('a[href="/auth/logout"]');
-	const logoutLink = await page.$eval(
-		'a[href="/auth/logout"]',
-		(el) => el.innerHTML
-	);
-
+	const logoutLink = await page.getContentsOf('a[href="/auth/logout"]');
 	expect(logoutLink).toMatch(/Logout/);
 });
